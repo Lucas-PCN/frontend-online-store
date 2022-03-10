@@ -34,7 +34,7 @@ export async function getProductsFromCategoryAndQuery(categoryId, query) {
 
 /**
  * Pesquisa itens por nome
- * 
+ *
  * [Exemplo de retorno](https://api.mercadolibre.com/sites/MLB/search?q=pneu)
  */
 export async function getProductsByName(name) {
@@ -60,7 +60,7 @@ export async function getProductsByCategory(categoryId) {
 
 /**
  * Detalhes de um produto específico
- * 
+ *
  * [Exemplo de retorno](https://api.mercadolibre.com/items/MLB1164900876)
  */
 export async function getProduct(productId) {
