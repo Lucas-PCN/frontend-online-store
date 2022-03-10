@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { getCategories } from '../services/api';
 
 class Home extends React.Component {
@@ -25,7 +26,7 @@ class Home extends React.Component {
     } = this.state;
 
     return (
-      <>
+      <div>
         <h2
           data-testid="home-initial-message"
         >
@@ -40,7 +41,10 @@ class Home extends React.Component {
             { categorie.name }
           </button>
         )) }
-      </>
+        <Link to="/carrinho" data-testid="shopping-cart-button">
+          <button type="button">Ir para o meu carrinho</button>
+        </Link>
+      </div>
     );
   }
 }
