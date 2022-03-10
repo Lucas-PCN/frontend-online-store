@@ -34,6 +34,8 @@ export async function getProductsFromCategoryAndQuery(categoryId, query) {
 
 /**
  * Pesquisa itens por nome
+ * 
+ * [Exemplo de retorno](https://api.mercadolibre.com/sites/MLB/search?q=pneu)
  */
 export async function getProductsByName(name) {
   const params = new URLSearchParams();
@@ -45,6 +47,8 @@ export async function getProductsByName(name) {
 
 /**
  * Pesquisa itens de uma categoria
+ *
+ * [Exemplo de retorno](https://api.mercadolibre.com/sites/MLB/search?category=MLB5672)
  */
 export async function getProductsByCategory(categoryId) {
   const params = new URLSearchParams();
@@ -56,6 +60,8 @@ export async function getProductsByCategory(categoryId) {
 
 /**
  * Detalhes de um produto específico
+ * 
+ * [Exemplo de retorno](https://api.mercadolibre.com/items/MLB1164900876)
  */
 export async function getProduct(productId) {
   const data = await fetchUrl(ITEM_ENDPOINT + productId);
