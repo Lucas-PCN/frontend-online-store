@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { getProduct } from '../services/api';
-import ProductCard from './ProductCard';
 
 export default class Details extends Component {
   constructor() {
@@ -28,11 +27,11 @@ export default class Details extends Component {
     return (
       <>
         <h1 data-testid="product-detail-name">{ title }</h1>
-        <ProductCard
-          title={ title }
-          thumbnail={ thumbnail }
-          price={ price }
-        />
+        <img src={ thumbnail } alt={ title } width="70px" />
+        <h3>
+          R$
+          { price }
+        </h3>
         <button
           type="button"
         >
