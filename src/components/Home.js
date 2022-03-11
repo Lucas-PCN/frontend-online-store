@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { getCategories, getProductsByName } from '../services/api';
+import { getCategories, getProductsFromCategoryAndQuery } from '../services/api';
 import ProductCardList from './ProductCardList';
 
 class Home extends React.Component {
@@ -11,6 +11,7 @@ class Home extends React.Component {
       categories: [],
       searchQuery: '',
       searchResults: undefined,
+      searchCategory: undefined,
     };
   }
 
@@ -18,15 +19,21 @@ class Home extends React.Component {
     this.getCategoriesFromApi();
   }
 
-  searchProducts = async (e) => {
-    e.preventDefault();
-    const { searchQuery } = this.state;
-    getProductsByName(searchQuery)
+  searchProducts = async (event) => {
+    if (event) event.preventDefault();
+    const { searchQuery, searchCategory } = this.state;
+    getProductsFromCategoryAndQuery(searchCategory, searchQuery)
       .then((res) => {
         this.setState(() => ({
           searchResults: res.results,
         }));
       });
+  }
+
+  setCategory = async (categoryId) => {
+    this.setState(() => ({
+      searchCategory: categoryId,
+    }), this.searchProducts);
   }
 
   getCategoriesFromApi = async () => {
@@ -70,6 +77,7 @@ class Home extends React.Component {
             data-testid="category"
             type="button"
             key={ categorie.name }
+            onClick={ () => this.setCategory(categorie.id) }
           >
             { categorie.name }
           </button>
