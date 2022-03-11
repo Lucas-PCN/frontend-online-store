@@ -13,10 +13,10 @@ export default class ProductCardList extends Component {
     return (
       <div>
         {results.map((product) => {
-          const { title, thumbnail, price } = product;
+          const { title, thumbnail, price, id } = product;
           return (
             <ProductCard
-              key={ title }
+              key={ id }
               title={ title }
               thumbnail={ thumbnail }
               price={ price }
