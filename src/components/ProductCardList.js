@@ -40,5 +40,7 @@ export default class ProductCardList extends Component {
 }
 
 ProductCardList.propTypes = {
-  results: PropTypes.arrayOf(PropTypes.any).isRequired,
+  results: PropTypes.oneOf(
+    [PropTypes.arrayOf(PropTypes.any).isRequired, undefined],
+  ).isRequired,
 };
