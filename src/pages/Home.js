@@ -1,22 +1,18 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-import { getCategories, getProductsFromCategoryAndQuery } from '../services/api';
+import { getProductsFromCategoryAndQuery } from '../services/api';
 import ProductCardList from '../components/ProductCardList';
+import CategoryList from '../components/CategoryList';
+import HomeHeader from '../components/HomeHeader';
 
 class Home extends React.Component {
   constructor() {
     super();
 
     this.state = {
-      categories: [],
       searchQuery: '',
       searchResults: undefined,
-      searchCategory: undefined,
+      searchCategory: '',
     };
-  }
-
-  componentDidMount() {
-    this.getCategoriesFromApi();
   }
 
   searchProducts = async (event) => {
@@ -36,57 +32,29 @@ class Home extends React.Component {
     }), this.searchProducts);
   }
 
-  getCategoriesFromApi = async () => {
-    const response = await getCategories();
-    this.setState({ categories: [...response] });
-  }
-
   render() {
     const {
-      categories,
       searchQuery,
       searchResults,
+      searchCategory,
     } = this.state;
 
     return (
-      <div>
-        <h2
-          data-testid="home-initial-message"
-        >
-          Digite algum termo de pesquisa ou escolha uma categoria.
-        </h2>
+      <div className="is-flex">
+        <CategoryList
+          selectedCategory={ searchCategory }
+          onCategoryChange={ this.setCategory }
+        />
 
-        <form>
-          <input
-            placeholder="Procurando por algo?"
-            value={ searchQuery }
-            data-testid="query-input"
-            onChange={ (e) => this.setState({ searchQuery: e.target.value }) }
+        <div className="container is-flex is-flex-direction-column p-3">
+          <HomeHeader
+            query={ searchQuery }
+            updateQuery={ (e) => this.setState({ searchQuery: e.target.value }) }
+            search={ this.searchProducts }
           />
-          <button
-            data-testid="query-button"
-            type="submit"
-            onClick={ this.searchProducts }
-          >
-            Pesquisar
-          </button>
-        </form>
 
-        {categories.map((categorie) => (
-          <button
-            data-testid="category"
-            type="button"
-            key={ categorie.name }
-            onClick={ () => this.setCategory(categorie.id) }
-          >
-            { categorie.name }
-          </button>
-        )) }
-        <Link to="/carrinho" data-testid="shopping-cart-button">
-          <button type="button">Ir para o meu carrinho</button>
-        </Link>
-
-        {searchResults !== undefined && <ProductCardList results={ searchResults } />}
+          <ProductCardList results={ searchResults } />
+        </div>
       </div>
     );
   }
