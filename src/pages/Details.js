@@ -46,7 +46,7 @@ export default class Details extends Component {
         <div className="box is-flex mt-2">
           <img src={ pictures[0].url } alt={ title } width="30%" />
 
-          <div className="is-flex is-flex-direction-column is-justify-content-center ml-2">
+          <div className="is-flex is-flex-direction-column is-justify-content-center">
             <Title data-testid="product-detail-name">{ title }</Title>
             <Subtitle>{shipping.free_shipping && 'Frete grátis'}</Subtitle>
             <Currency value={ price } />

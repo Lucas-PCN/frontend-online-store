@@ -1,3 +1,7 @@
+/* stylelint-disable property-no-vendor-prefix */
+
+/* stylelint-disable value-no-vendor-prefix */
+
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap') ;
 
 * {
@@ -5,8 +9,8 @@
 }
 
 .clamp {
+  -webkit-box-orient: vertical;
   display: -webkit-box;
   -webkit-line-clamp: 3;
-  -webkit-box-orient: vertical;
   overflow: hidden;
 }
