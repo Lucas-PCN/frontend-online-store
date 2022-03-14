@@ -9,6 +9,7 @@ import Subtitle from '../components/generic/Typography/Subtitle';
 import Currency from '../components/generic/Typography/Currency';
 import Header from '../components/generic/Header';
 import Box from '../components/generic/Box';
+import Input from '../components/generic/Input';
 
 export default class Details extends Component {
   constructor() {
@@ -43,7 +44,7 @@ export default class Details extends Component {
           </Link>
         </Header>
 
-        <div className="box is-flex mt-2">
+        <Box flex>
           <img src={ pictures[0].url } alt={ title } width="30%" />
 
           <div className="is-flex is-flex-direction-column is-justify-content-center">
@@ -51,25 +52,19 @@ export default class Details extends Component {
             <Subtitle>{shipping.free_shipping && 'Frete grátis'}</Subtitle>
             <Currency value={ price } />
 
-            <form className="is-flex">
-              <input
-                data-testid="quantity-input"
-                className="input"
-                placeholder="Quantidade"
+            <Box container={ false } flex gap={ 5 }>
+              <Input
                 type="number"
                 min="1"
                 defaultValue="1"
+                data-testid="shopping-cart-product-quantity"
               />
-              <button
-                className="button is-primary ml-2"
-                type="button"
-                data-testid="query-button"
-              >
+              <Button is="primary" data-testid="product-detail-add-to-cart">
                 Adicionar ao carrinho
-              </button>
-            </form>
+              </Button>
+            </Box>
           </div>
-        </div>
+        </Box>
       </Box>
     );
   }

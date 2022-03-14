@@ -3,9 +3,9 @@ import PropTypes from 'prop-types';
 
 export default class Box extends Component {
   render() {
-    const { children, flex, column, padding, gap, ...rest } = this.props;
+    const { children, container, flex, column, padding, gap, ...rest } = this.props;
 
-    let className = 'container';
+    let className = container ? 'container' : '';
     if (flex) className += ' is-flex';
     if (column) className += ' is-flex-direction-column';
     if (padding) className += ` p-${padding}`;
@@ -25,6 +25,7 @@ export default class Box extends Component {
 Box.propTypes = {
   children: PropTypes.node,
   flex: PropTypes.bool,
+  container: PropTypes.bool,
   column: PropTypes.bool,
   padding: PropTypes.number,
   gap: PropTypes.number,
@@ -34,6 +35,7 @@ Box.defaultProps = {
   children: undefined,
   flex: false,
   column: false,
+  container: true,
   padding: 0,
   gap: 0,
 };
