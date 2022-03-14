@@ -3,7 +3,7 @@ import { getProductsFromCategoryAndQuery } from '../services/api';
 import CategoryList from '../components/CategoryList';
 import ProductList from '../components/ProductList';
 import Title from '../components/generic/Typography/Title';
-import Header from '../components/Header';
+import Header from '../components/generic/Header';
 import Input from '../components/generic/Input';
 import Button from '../components/generic/Button';
 import Box from '../components/generic/Box';

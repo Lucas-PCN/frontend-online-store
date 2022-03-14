@@ -7,7 +7,7 @@ import Button from '../components/generic/Button';
 import Title from '../components/generic/Typography/Title';
 import Subtitle from '../components/generic/Typography/Subtitle';
 import Currency from '../components/generic/Typography/Currency';
-import Header from '../components/Header';
+import Header from '../components/generic/Header';
 import Box from '../components/generic/Box';
 
 export default class Details extends Component {

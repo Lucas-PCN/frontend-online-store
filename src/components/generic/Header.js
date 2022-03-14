@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { AiOutlineShoppingCart } from 'react-icons/ai';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import Button from './generic/Button';
+import Button from './Button';
 
 export default class Header extends Component {
   componentDidUpdate() {
