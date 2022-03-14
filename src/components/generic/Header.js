@@ -5,9 +5,9 @@ import PropTypes from 'prop-types';
 import Button from './Button';
 
 export default class Header extends Component {
-  componentDidUpdate() {
-    // Adicionar lógica de puxar quantidade de itens no carrinho!
-  }
+  // componentDidUpdate() {
+  //   // Adicionar lógica de puxar quantidade de itens no carrinho!
+  // }
 
   render() {
     const { children } = this.props;
@@ -25,7 +25,10 @@ export default class Header extends Component {
         </div>
 
         <Link to="/carrinho" data-testid="shopping-cart-button">
-          <Button is="link" icon={ <AiOutlineShoppingCart /> }>
+          <Button
+            is="link"
+            icon={ <AiOutlineShoppingCart /> }
+          >
             Ver carrinho (0)
           </Button>
         </Link>

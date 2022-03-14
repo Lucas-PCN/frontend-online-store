@@ -8,13 +8,16 @@ const saveProductId = (productId) => {
 export const getProductId = () => {
   let item = readProductId();
   if (item === null) {
-    item = {};
+    item = [];
   }
+  return item;
 };
 
 export const createProductId = (productId) => {
-  // const items = {
-  //   id: [],
-  // };
-  saveProductId(productId);
+  const previous = readProductId();
+  if (!previous) {
+    return saveProductId([productId]);
+  }
+  const ids = [...previous, productId];
+  saveProductId(ids);
 };
