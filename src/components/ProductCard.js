@@ -1,15 +1,13 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
+import Title from './generic/Typography/Title';
+import Currency from './generic/Typography/Currency';
+import Button from './generic/Button';
 
 export default class ProductCard extends Component {
   render() {
     const { id, title, price, thumbnail } = this.props;
-
-    const parsedPrice = price.toLocaleString('pt-br', {
-      style: 'currency',
-      currency: 'BRL',
-    });
 
     return (
       <div
@@ -24,8 +22,8 @@ export default class ProductCard extends Component {
         </div>
 
         <div className="card-content">
-          <p className="title is-6 m-0 clamp">{ title }</p>
-          <span>{ parsedPrice }</span>
+          <Title clamp>{ title }</Title>
+          <Currency value={ price } />
         </div>
 
         <div className="card-footer">
@@ -36,6 +34,9 @@ export default class ProductCard extends Component {
           >
             Ver mais
           </Link>
+          <div className="card-footer-item p-0">
+            <Button is="primary">Adicionar</Button>
+          </div>
         </div>
       </div>
     );

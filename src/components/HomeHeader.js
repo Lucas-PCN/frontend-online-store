@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
+import Button from './generic/Button';
+import Input from './generic/Input';
 
 export default class HomeHeader extends Component {
   render() {
@@ -9,31 +11,25 @@ export default class HomeHeader extends Component {
     return (
       <header className="level mb-4">
         <div className="level-left level-item">
-          <input
+          <Input
             data-testid="query-input"
-            className="input"
             placeholder="Procurando algo?"
             onChange={ updateQuery }
             value={ query }
           />
-          <button
-            className="button is-primary ml-2"
-            type="button"
+          <div className="ml-2" />
+          <Button
+            is="primary"
             data-testid="query-button"
             onClick={ search }
           >
             Pesquisar
-          </button>
+          </Button>
         </div>
 
         <div className="level-right ml-2">
           <Link to="/carrinho" data-testid="shopping-cart-button">
-            <button
-              className="button is-link"
-              type="button"
-            >
-              Ir para meu carrinho
-            </button>
+            <Button is="link">Ir para o carrinho</Button>
           </Link>
         </div>
       </header>
