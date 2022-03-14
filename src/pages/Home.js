@@ -19,8 +19,7 @@ class Home extends React.Component {
     };
   }
 
-  searchProducts = async (event) => {
-    if (event) event.preventDefault();
+  searchProducts = async () => {
     const { searchQuery, searchCategory } = this.state;
     getProductsFromCategoryAndQuery(searchCategory, searchQuery)
       .then((res) => {
