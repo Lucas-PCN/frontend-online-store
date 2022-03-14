@@ -10,6 +10,7 @@ import Currency from '../components/generic/Typography/Currency';
 import Header from '../components/generic/Header';
 import Box from '../components/generic/Box';
 import Input from '../components/generic/Input';
+import { addProduct } from '../services/saveLocalStorage';
 
 export default class Details extends Component {
   constructor() {
@@ -17,6 +18,8 @@ export default class Details extends Component {
 
     this.state = {
       productItem: undefined,
+      quantity: 1,
+      itemId: '',
     };
   }
 
@@ -30,11 +33,20 @@ export default class Details extends Component {
     this.setState({ productItem: response });
   }
 
+  onInputChange = (id) => {
+    const { quantity } = this.state;
+    this.setState((previous) => ({
+      ...previous,
+      itemId: id,
+    }));
+    addProduct(id, Number(quantity));
+  }
+
   render() {
-    const { productItem } = this.state;
+    const { productItem, quantity } = this.state;
     if (!productItem) return <p>Carregando...</p>;
 
-    const { title, price, pictures, shipping } = productItem;
+    const { id, title, price, pictures, shipping } = productItem;
 
     return (
       <Box padding={ 3 }>
@@ -58,8 +70,14 @@ export default class Details extends Component {
                 min="1"
                 defaultValue="1"
                 data-testid="shopping-cart-product-quantity"
+                onChange={ ({ target }) => this.setState({ quantity: target.value }) }
+                value={ quantity }
               />
-              <Button is="primary" data-testid="product-detail-add-to-cart">
+              <Button
+                is="primary"
+                data-testid="product-detail-add-to-cart"
+                onClick={ () => this.onInputChange(id) }
+              >
                 Adicionar ao carrinho
               </Button>
             </Box>

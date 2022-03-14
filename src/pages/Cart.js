@@ -25,9 +25,9 @@ class Cart extends React.Component {
   products = () => {
     const { itemsID } = this.state;
     itemsID.forEach((element) => {
-      getProduct(element).then((res) => {
+      getProduct(element.id).then((res) => {
         this.setState((prev) => ({
-          productsCart: [...prev.productsCart, res],
+          productsCart: [...prev.productsCart, { ...res, quantity: element.quantity }],
         }));
       });
     });
@@ -43,13 +43,14 @@ class Cart extends React.Component {
               { productsCart.map((item) => (
                 <div key={ item.id } className="column is-one-third">
                   <h3 data-testid="shopping-cart-product-name">{ item.title }</h3>
+                  <h1
+                    data-testid="shopping-cart-product-quantity"
+                  >
+                    Quantidades do produto:
+                    { item.quantity }
+                  </h1>
                 </div>
               ))}
-              <span data-testid="shopping-cart-product-quantity">
-                Quantidade:
-                {' '}
-                {productsCart.length}
-              </span>
             </div>
           )
           : <p data-testid="shopping-cart-empty-message">Seu carrinho está vazio</p> }
