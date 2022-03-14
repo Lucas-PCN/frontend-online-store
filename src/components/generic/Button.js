@@ -27,7 +27,7 @@ export default class Button extends Component {
 Button.propTypes = {
   is: PropTypes.string,
   loading: PropTypes.bool,
-  icon: PropTypes.oneOf([PropTypes.node, undefined]),
+  icon: PropTypes.node,
   children: PropTypes.node.isRequired,
 };
 

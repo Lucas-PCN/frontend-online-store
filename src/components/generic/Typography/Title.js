@@ -3,19 +3,19 @@ import PropTypes from 'prop-types';
 
 export default class Title extends React.Component {
   render() {
-    const { clamp, children } = this.props;
-    let className = 'title is-4 m-0';
-    if (clamp) className += ' clamp';
+    const { children, ...rest } = this.props;
 
-    return <span className={ className } { ...this.props }>{children}</span>;
+    return (
+      <span
+        className="title is-4 m-0"
+        { ...rest }
+      >
+        {children}
+      </span>
+    );
   }
 }
 
 Title.propTypes = {
-  clamp: PropTypes.bool,
   children: PropTypes.node.isRequired,
-};
-
-Title.defaultProps = {
-  clamp: false,
 };

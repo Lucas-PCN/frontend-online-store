@@ -1,8 +1,12 @@
 import React from 'react';
 import { getProductsFromCategoryAndQuery } from '../services/api';
-import ProductCardList from '../components/ProductCardList';
 import CategoryList from '../components/CategoryList';
-import HomeHeader from '../components/HomeHeader';
+import ProductList from '../components/ProductList';
+import Title from '../components/generic/Typography/Title';
+import Header from '../components/Header';
+import Input from '../components/generic/Input';
+import Button from '../components/generic/Button';
+import Box from '../components/generic/Box';
 
 class Home extends React.Component {
   constructor() {
@@ -40,22 +44,38 @@ class Home extends React.Component {
     } = this.state;
 
     return (
-      <div className="is-flex">
+      <Box flex>
         <CategoryList
           selectedCategory={ searchCategory }
           onCategoryChange={ this.setCategory }
         />
 
-        <div className="container is-flex is-flex-direction-column p-3">
-          <HomeHeader
-            query={ searchQuery }
-            updateQuery={ (e) => this.setState({ searchQuery: e.target.value }) }
-            search={ this.searchProducts }
-          />
+        <Box flex column padding={ 3 }>
+          <Header>
+            <Input
+              data-testid="query-input"
+              placeholder="Procurando algo?"
+              onChange={ ({ target }) => this.setState({ searchQuery: target.value }) }
+              value={ searchQuery }
+            />
+            <Button
+              is="primary"
+              onClick={ this.searchProducts }
+              data-testid="query-button"
+            >
+              Pesquisar
+            </Button>
+          </Header>
 
-          <ProductCardList results={ searchResults } />
-        </div>
-      </div>
+          { searchResults
+            ? <ProductList itemList={ searchResults } />
+            : (
+              <Title data-testid="home-initial-message">
+                Digite algum termo de pesquisa ou escolha uma categoria.
+              </Title>
+            )}
+        </Box>
+      </Box>
     );
   }
 }

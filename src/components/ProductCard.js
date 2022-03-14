@@ -22,7 +22,7 @@ export default class ProductCard extends Component {
         </div>
 
         <div className="card-content">
-          <Title clamp>{ title }</Title>
+          <Title>{ title }</Title>
           <Currency value={ price } />
         </div>
 

@@ -1,11 +1,14 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
+import { IoIosArrowBack } from 'react-icons/io';
 import { getProduct } from '../services/api';
 import Button from '../components/generic/Button';
 import Title from '../components/generic/Typography/Title';
 import Subtitle from '../components/generic/Typography/Subtitle';
 import Currency from '../components/generic/Typography/Currency';
+import Header from '../components/Header';
+import Box from '../components/generic/Box';
 
 export default class Details extends Component {
   constructor() {
@@ -33,15 +36,12 @@ export default class Details extends Component {
     const { title, price, pictures, shipping } = productItem;
 
     return (
-      <div className="container is-max-desktop m-auto p-3">
-        <header className="container is-flex is-justify-content-space-between">
+      <Box padding={ 3 }>
+        <Header>
           <Link to="/">
-            <Button>Voltar</Button>
+            <Button icon={ <IoIosArrowBack /> }>Voltar</Button>
           </Link>
-          <Link to="/carrinho">
-            <Button>Carrinho</Button>
-          </Link>
-        </header>
+        </Header>
 
         <div className="box is-flex mt-2">
           <img src={ pictures[0].url } alt={ title } width="30%" />
@@ -70,7 +70,7 @@ export default class Details extends Component {
             </form>
           </div>
         </div>
-      </div>
+      </Box>
     );
   }
 }
