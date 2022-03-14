@@ -21,3 +21,17 @@ export const createProductId = (productId) => {
   const ids = [...previous, productId];
   saveProductId(ids);
 };
+
+export const addProduct = (productid, quantity) => {
+  const savedProducts = getProductId();
+  const productIndex = savedProducts.findIndex((item) => item.id === productid);
+  if (productIndex < 0) {
+    savedProducts.push({ id: productid, quantity });
+  } else {
+    savedProducts[productIndex] = {
+      id: savedProducts[productIndex].id,
+      quantity: savedProducts[productIndex].quantity + quantity,
+    };
+  }
+  saveProductId(savedProducts);
+};

@@ -4,13 +4,9 @@ import { Link } from 'react-router-dom';
 import Title from './generic/Typography/Title';
 import Currency from './generic/Typography/Currency';
 import Button from './generic/Button';
-import { createProductId } from '../services/saveLocalStorage';
+import { addProduct } from '../services/saveLocalStorage';
 
 export default class ProductCard extends Component {
-  addToCart = (id) => {
-    createProductId(id);
-  };
-
   render() {
     const { id, title, price, thumbnail } = this.props;
 
@@ -42,7 +38,7 @@ export default class ProductCard extends Component {
           <div className="card-footer-item p-0">
             <Button
               is="primary"
-              onClick={ () => this.addToCart(id) }
+              onClick={ () => addProduct(id, 1) }
               data-testid="product-add-to-cart"
             >
               Adicionar
