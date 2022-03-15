@@ -34,12 +34,12 @@ export default class Details extends Component {
   }
 
   onInputChange = (id) => {
-    const { quantity } = this.state;
+    const { quantity, productItem } = this.state;
     this.setState((previous) => ({
       ...previous,
       itemId: id,
     }));
-    updateProduct(id, Number(quantity));
+    updateProduct(productItem, Number(quantity));
   }
 
   render() {

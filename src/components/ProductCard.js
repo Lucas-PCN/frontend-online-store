@@ -8,7 +8,8 @@ import { updateProduct } from '../services/saveLocalStorage';
 
 export default class ProductCard extends Component {
   render() {
-    const { id, title, price, thumbnail } = this.props;
+    const { item } = this.props;
+    const { id, title, price, thumbnail } = item;
 
     return (
       <div
@@ -38,7 +39,7 @@ export default class ProductCard extends Component {
           <div className="card-footer-item p-0">
             <Button
               is="primary"
-              onClick={ () => updateProduct(id, 1) }
+              onClick={ () => updateProduct(item, 1) }
               data-testid="product-add-to-cart"
             >
               Adicionar
@@ -51,8 +52,10 @@ export default class ProductCard extends Component {
 }
 
 ProductCard.propTypes = {
-  id: PropTypes.string.isRequired,
-  title: PropTypes.string.isRequired,
-  price: PropTypes.number.isRequired,
-  thumbnail: PropTypes.string.isRequired,
+  item: PropTypes.objectOf(PropTypes.shape({
+    id: PropTypes.string.isRequired,
+    title: PropTypes.string.isRequired,
+    price: PropTypes.number.isRequired,
+    thumbnail: PropTypes.string.isRequired,
+  })).isRequired,
 };

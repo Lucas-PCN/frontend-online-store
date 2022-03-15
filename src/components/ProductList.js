@@ -17,7 +17,7 @@ export default class ProductList extends Component {
       <div className="columns is-multiline p-3">
         { itemList.map((item) => (
           <div key={ item.id } className="column is-one-third">
-            <ProductCard { ...item } />
+            <ProductCard item={ item } />
           </div>
         ))}
       </div>
