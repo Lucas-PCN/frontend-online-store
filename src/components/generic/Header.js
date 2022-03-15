@@ -48,6 +48,7 @@ export default class Header extends Component {
           <Button
             is="link"
             icon={ <AiOutlineShoppingCart /> }
+            data-testid="shopping-cart-size"
           >
             Ver carrinho (
             { count }
