@@ -3,14 +3,34 @@ import { AiOutlineShoppingCart } from 'react-icons/ai';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import Button from './Button';
+import { itemCount } from '../../services/saveLocalStorage';
 
 export default class Header extends Component {
-  // componentDidUpdate() {
-  //   // Adicionar lógica de puxar quantidade de itens no carrinho!
-  // }
+  constructor() {
+    super();
+
+    this.state = {
+      count: itemCount(),
+    };
+  }
+
+  componentDidMount() {
+    window.updateCartItemCount = this.updateCartItemCount;
+  }
+
+  componentWillUnmount() {
+    window.updateCartItemCount = undefined;
+  }
+
+  updateCartItemCount = () => {
+    this.setState({
+      count: itemCount(),
+    });
+  }
 
   render() {
     const { children } = this.props;
+    const { count } = this.state;
 
     return (
       <header
@@ -29,7 +49,9 @@ export default class Header extends Component {
             is="link"
             icon={ <AiOutlineShoppingCart /> }
           >
-            Ver carrinho (0)
+            Ver carrinho (
+            { count }
+            )
           </Button>
         </Link>
       </header>

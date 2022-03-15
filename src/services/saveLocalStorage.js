@@ -1,6 +1,6 @@
 const PRODUCT_KEY = 'productId';
 
-const readProductId = () => JSON.parse(localStorage.getItem(PRODUCT_KEY));
+export const readProductId = () => JSON.parse(localStorage.getItem(PRODUCT_KEY) || '[]');
 const saveProductId = (productId) => {
   localStorage.setItem(PRODUCT_KEY, JSON.stringify(productId));
 };
@@ -34,4 +34,11 @@ export const addProduct = (productid, quantity) => {
     };
   }
   saveProductId(savedProducts);
+  if (window.updateCartItemCount) window.updateCartItemCount();
+};
+
+export const itemCount = () => {
+  const savedItems = readProductId();
+  const sum = savedItems.reduce((prev, act) => prev + act.quantity, 0);
+  return sum;
 };
