@@ -22,27 +22,30 @@ export const createProductId = (productId) => {
   saveProductId(ids);
 };
 
-export const updateProduct = (productid, quantity) => {
+export const updateProduct = (product, quantity) => {
   const savedProducts = getProductId();
-  const productIndex = savedProducts.findIndex((item) => item.id === productid);
+  const productIndex = savedProducts.findIndex((item) => item.id === product.id);
   if (productIndex < 0) {
-    savedProducts.push({ id: productid, quantity });
+    savedProducts.push({ ...product, quantity });
   } else {
-    const product = savedProducts[productIndex];
-    const newQuantity = product.quantity + quantity < 1 ? 1 : product.quantity + quantity;
+    const productIdx = savedProducts[productIndex];
+    const newQuantity = productIdx.quantity + quantity < 1
+      ? 1
+      : productIdx.quantity + quantity;
 
     savedProducts[productIndex] = {
-      id: product.id,
+      ...product,
       quantity: newQuantity,
     };
   }
   saveProductId(savedProducts);
+
   if (window.updateCartItemCount) window.updateCartItemCount();
 };
 
-export const removeProduct = (productid) => {
+export const removeProduct = (product) => {
   const savedProducts = getProductId();
-  const productIndex = savedProducts.findIndex((item) => item.id === productid);
+  const productIndex = savedProducts.findIndex((item) => item.id === product.id);
 
   if (productIndex < 0) return;
 
