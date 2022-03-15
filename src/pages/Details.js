@@ -10,7 +10,7 @@ import Currency from '../components/generic/Typography/Currency';
 import Header from '../components/generic/Header';
 import Box from '../components/generic/Box';
 import Input from '../components/generic/Input';
-import { addProduct } from '../services/saveLocalStorage';
+import { updateProduct } from '../services/saveLocalStorage';
 
 export default class Details extends Component {
   constructor() {
@@ -39,7 +39,7 @@ export default class Details extends Component {
       ...previous,
       itemId: id,
     }));
-    addProduct(id, Number(quantity));
+    updateProduct(id, Number(quantity));
   }
 
   render() {

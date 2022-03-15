@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import Title from './generic/Typography/Title';
 import Currency from './generic/Typography/Currency';
 import Button from './generic/Button';
-import { addProduct } from '../services/saveLocalStorage';
+import { updateProduct } from '../services/saveLocalStorage';
 
 export default class ProductCard extends Component {
   render() {
@@ -38,7 +38,7 @@ export default class ProductCard extends Component {
           <div className="card-footer-item p-0">
             <Button
               is="primary"
-              onClick={ () => addProduct(id, 1) }
+              onClick={ () => updateProduct(id, 1) }
               data-testid="product-add-to-cart"
             >
               Adicionar

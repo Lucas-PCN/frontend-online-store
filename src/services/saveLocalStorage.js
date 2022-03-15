@@ -22,18 +22,33 @@ export const createProductId = (productId) => {
   saveProductId(ids);
 };
 
-export const addProduct = (productid, quantity) => {
+export const updateProduct = (productid, quantity) => {
   const savedProducts = getProductId();
   const productIndex = savedProducts.findIndex((item) => item.id === productid);
   if (productIndex < 0) {
     savedProducts.push({ id: productid, quantity });
   } else {
+    const product = savedProducts[productIndex];
+    const newQuantity = product.quantity + quantity < 1 ? 1 : product.quantity + quantity;
+
     savedProducts[productIndex] = {
-      id: savedProducts[productIndex].id,
-      quantity: savedProducts[productIndex].quantity + quantity,
+      id: product.id,
+      quantity: newQuantity,
     };
   }
   saveProductId(savedProducts);
+  if (window.updateCartItemCount) window.updateCartItemCount();
+};
+
+export const removeProduct = (productid) => {
+  const savedProducts = getProductId();
+  const productIndex = savedProducts.findIndex((item) => item.id === productid);
+
+  if (productIndex < 0) return;
+
+  savedProducts.splice(productIndex, 1);
+  saveProductId(savedProducts);
+
   if (window.updateCartItemCount) window.updateCartItemCount();
 };
 
